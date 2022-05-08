@@ -75,8 +75,8 @@ int main(void)
 	int Player2[11] = { 0, };
 	int Player3[11] = { 0, };	// 3인 이상 시에 쓰일 변수
 	int Player4[11] = { 0, };
-	int ResultD = 0;
-	int Result1 = 0;	// 카드 합
+	int ResultD = 0;  // 카드 합
+	int Result1 = 0;
 	int Result2 = 0;
 	int Result3 = 0;	// 3인 이상 시에 쓰일 변수
 	int Result4 = 0;
@@ -187,11 +187,11 @@ int main(void)
 						Dealer[k] = 10;
 					}
 
-					ResultD += Dealer[k] % 13;
+					ResultD += (Dealer[k] % 13) + 1;
 				}
 
-				if (ResultD <= 14)
-				{
+				if (ResultD <= 16)   // 위에서 +1을 빼고 원값으로 하려고 했지만 2를 빼준 14를 넣었기 때문에
+				{					 // 추가 베팅 부터는 원값에서 빠지는 수가 1씩 늘기 때문에 원값으로 해주는게 낫다.
 					Dealer[j1] = Deck[i];	// i+1로 겹치지 않고 올라가도록 초기화
 					cout << "Draw " << j1 + 1;
 					cout << setw(8) << " ";
